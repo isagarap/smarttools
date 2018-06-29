@@ -1,0 +1,96 @@
+﻿<div class="animated fadeIn fast">
+    <!-- Linking -->
+    <div class="linking">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li><a style="cursor:pointer;" [routerLink]="['/home']">Home</a></li>
+                <li class="active">Iniciar Sesión</li>
+            </ol>
+        </div>
+    </div>
+
+    <section class="login-sec padding-top-30 padding-bottom-100">
+        <div class="container">
+            <!--novalidate autocomplete="off"-->
+            <form #myForm="ngForm">
+
+                <div class="row text-center">
+                    <div class="heading">
+                        <h2>Inicio de Sesión</h2>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="col-md-3">&nbsp;</div>
+                    <div class="col-md-6" align="center">
+                        <div class="row">
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input class="form-control lowerText" name="email" [(ngModel)]="cliente.Email"
+                                       pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" maxlength="50"
+                                       placeholder="Email" type="email" #email="ngModel" required />
+
+                                <p *ngIf="email.errors && (email.dirty || email.touched)" class="text-danger">
+                                    Email es requerido
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">&nbsp;</div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="col-md-3">&nbsp;</div>
+                    <div class="col-md-6" align="center" >
+                        <div class="row">
+                            <div class="form-group">
+                                <label for="pwd">Contraseña</label>
+                                <input class="form-control" name="clave" [(ngModel)]="cliente.Clave" maxlength="50"
+                                       placeholder="Clave" type="password" #clave="ngModel" required />
+
+                                <p *ngIf="clave.errors && (clave.dirty || clave.touched)" class="text-danger">
+                                    Clave es requerida
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">&nbsp;</div>
+                </div>
+
+                <br />
+                <br />
+                <br />
+
+                <div class="col-md-12" align="center">
+                    &nbsp;
+                </div>
+
+                <div class="col-md-12" align="center">
+                    <a style="cursor:pointer;font-size: 13px;" [routerLink]="['/register']"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;Registrarse</a><br />
+                    <a style="cursor:pointer;font-size: 13px;" [routerLink]="['/passrecover']"><i class="fa fa-unlock-alt" aria-hidden="true"></i>&nbsp;&nbsp;Olvidaste tu contraseña</a>
+                </div>
+
+                <div class="col-md-12" align="center">
+                    &nbsp;
+                </div>
+
+                <div class="col-md-12">
+                    <div class="col-md-3">&nbsp;</div>
+                    <div class="col-md-6" align="center">
+                        <div class="row">
+                            <button class="btn btn-inverse text-center" style="text-align:center;" type="button"
+                                    [disabled]="!myForm.form.valid"
+                                    (click)="login(cliente)">
+                                Aceptar
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-3">&nbsp;</div>
+                </div>               
+                
+            </form>
+        </div>
+    </section>
+
+</div>
+

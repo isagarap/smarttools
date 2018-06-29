@@ -1,0 +1,161 @@
+﻿<div class="animated fadeIn fast">
+    <!-- Linking -->
+    <div class="linking">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li><a style="cursor:pointer;" [routerLink]="['/home']">Home</a></li>
+                <li class="active">Registro</li>
+            </ol>
+        </div>
+    </div>
+
+    <section class="login-sec padding-top-30 padding-bottom-100">
+        <div class="container">
+            <form #myForm="ngForm" novalidate autocomplete="off">
+
+                <div class="heading text-center">
+                    <h2>Registro de Usuario</h2>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Rut<span class="starv"> *</span></label>
+                    <input class="form-control" name="rut" [(ngModel)]="cliente.Rut" maxlength="12" (focusout)="isValidRUT(cliente.Rut)"
+                           placeholder="Ejemplo: 12345678-9" type="text" #rut="ngModel" required />
+                    <p *ngIf="rut.errors && (rut.dirty || rut.touched)" class="text-danger">
+                        Rut es requerido
+                    </p>
+                </div>
+
+                <div class="form-group">
+                    <label for="tst">Tipo Usuario<span class="starv"> *</span></label>
+                    <select [(ngModel)]="selectedTipo" [disabled]="!tipoEnabled"
+                            class="form-control" (change)="changeTipo(selectedTipo)"
+                            name="tipousuario" #tipousuario="ngModel" required>
+                        <option *ngFor="let t of tipos"
+                                [ngValue]="t">
+                            {{ t.Nombre }}
+                        </option>
+                    </select>
+                    <p *ngIf="tipousuario.errors && (tipousuario.dirty || tipousuario.touched)" class="text-danger">
+                        Tipo Usuario es requerido
+                    </p>
+                </div>
+
+                <div id="divAll">
+                    <div class="form-group">
+                        <label for="email">{{nombreText}}<span class="starv"> *</span></label>
+                        <input class="form-control" name="nomaux" [(ngModel)]="cliente.NomAux" maxlength="60"
+                               placeholder="{{nombreText}}" type="text" #nomaux="ngModel" required />
+
+                        <p *ngIf="nomaux.errors && (nomaux.dirty || nomaux.touched)" class="text-danger">
+                            {{nombreText}} es requerido
+                        </p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tst">Giro<span class="starv"> *</span></label>
+                        <select id="selGiro" [disabled]="!giroEnabled" name="selGiro" class="form-control"></select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Teléfono<span class="starv"> *</span></label>
+                        <input class="form-control" name="telefono" [(ngModel)]="cliente.Telefono" maxlength="15"
+                               placeholder="Teléfono" type="text" #telefono="ngModel" required />
+
+                        <p *ngIf="telefono.errors && (telefono.dirty || telefono.touched)" class="text-danger">
+                            Teléfono es requerido
+                        </p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tst">Región<span class="starv"> *</span></label>
+                        <select id="selReg" name="selReg" class="form-control"></select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tst">Ciudad / Provincia<span class="starv"> *</span></label>
+                        <select id="selCiu" name="selCiu" class="form-control"></select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tst">Comuna<span class="starv"> *</span></label>
+                        <select id="selCom" name="selCom" class="form-control"></select>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div [ngClass]="(ocupaNumeroEnDireccion)?'col-md-10':'col-md-12'">
+                                <label for="email">Dirección<span class="starv"> *</span></label>
+                                <input class="form-control" name="direccion" [(ngModel)]="cliente.DirAux" maxlength="60"
+                                       placeholder="Dirección" type="text" #direccion="ngModel" required />
+
+                                <p *ngIf="direccion.errors && (direccion.dirty || direccion.touched)" class="text-danger">
+                                    Dirección es requerida
+                                </p>
+                            </div>
+                            <div class="col-md-2" *ngIf="ocupaNumeroEnDireccion">
+                                <label for="email">Número<span class="starv"> *</span></label>
+                                <input class="form-control" name="numero" [(ngModel)]="cliente.DirNum" maxlength="10"
+                                       placeholder="Número" type="text" #numero="ngModel" required />
+
+                                <p *ngIf="numero.errors && (numero.dirty || numero.touched)" class="text-danger">
+                                    Número es requerido
+                                </p>
+                            </div>
+                        </div>                        
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email<span class="starv"> *</span></label>
+                        <input class="form-control lowerText" name="email" [(ngModel)]="cliente.Email"
+                               pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" maxlength="50"
+                               placeholder="Email" type="email" #email="ngModel" required />
+
+                        <p *ngIf="email.errors && (email.dirty || email.touched)" class="text-danger">
+                            Email es requerido
+                        </p>
+                    </div>
+
+                    <div class="form-group">
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="pwd">Clave<span class="starv"> *</span></label>
+                                <input class="form-control" name="clave" [(ngModel)]="cliente.Clave" maxlength="50"
+                                       placeholder="Clave" type="password" #clave="ngModel" required />
+
+                                <p *ngIf="clave.errors && (clave.dirty || clave.touched)" class="text-danger">
+                                    Clave es requerida
+                                </p>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="pwd">Repita Clave<span class="starv"> *</span></label>
+                                <input class="form-control" name="repitaclave" [(ngModel)]="RepitaClave" maxlength="50"
+                                       placeholder="Repita Clave" type="password" #repitaclave="ngModel" required />
+
+                                <p *ngIf="repitaclave.errors && (repitaclave.dirty || repitaclave.touched)" class="text-danger">
+                                    Clave es requerida
+                                </p>
+                            </div>
+                        </div>
+
+                        
+                    </div>
+
+                </div>
+
+                <br />
+                <div class="row text-center">
+                    <button class="btn btn-inverse text-center" style="text-align:center;" type="button"
+                            [disabled]="!myForm.form.valid"
+                            (click)="registrar(cliente)">
+                        Aceptar
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </section>
+
+</div>
+

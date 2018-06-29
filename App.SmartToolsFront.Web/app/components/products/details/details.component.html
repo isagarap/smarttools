@@ -1,0 +1,168 @@
+﻿<div class="animated fadeIn fast">
+
+    <!-- Linking -->
+    <div class="linking">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li><a href="#">Productos</a></li>
+                <li class="active">Detalle</li>
+            </ol>
+        </div>
+    </div>
+
+    <section class="padding-top-40 padding-bottom-60">
+        <div class="container">
+            <div class="row">
+
+                <!-- Products -->
+                <div class="col-md-12">
+                    <div class="product-detail">
+                        <div class="product">
+                            <div class="row">
+                                <!-- Slider Thumb -->
+                                <div class="col-xs-5">                                        
+
+                                    <article>
+
+                                        <swiper class="swiper" [config]="config" *ngIf="images.length > 0">
+                                            <div class="swiper-wrapper test">
+                                                <img class="swiper-slide" *ngFor="let image of images" [src]="image.Path | sinimagen" alt="" style="box-sizing: border-box;border: 1px solid #e5e5e5;" />
+                                            </div>
+                                            <div class="swiper-pagination"></div>
+                                            <div class="swiper-button-next"></div>
+                                            <div class="swiper-button-prev"></div>
+                                        </swiper>
+
+                                        <img src="../../../../images/noimage.png" alt="" *ngIf="images.length == 0" />
+
+                                    </article>
+
+                                </div>
+                                <!-- Item Content -->
+                                <div class="col-xs-7">
+                                    <span class="tags">{{producto.NombreCategoria}}</span>
+                                    <h5>{{producto.DesProd}}</h5>
+                                    <span class="tags">Código: {{producto.CodProd}}</span>
+                                    <br /><br />
+
+                                    <!--<p class="rev"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <span class="margin-left-10">5 Review(s)</span></p>-->
+                                    <div class="row">
+                                        <div class="col-sm-6"><span class="price">${{producto.PrecioVta | monto}} <p style="font-size:11px;color:red;">IVA Incluido</p></span></div>
+                                        <div class="col-sm-6">
+                                            <p *ngIf="stock > 0" >Disponibilidad: <span class="in-stock">En stock ({{stock}})</span></p>
+                                            <p *ngIf="stock == 0">Disponibilidad: <span style="color:red;">Sin stock</span></p>
+                                        </div>
+                                    </div>
+                                    <!-- List Details -->
+                                    <!--<ul class="bullet-round-list">
+                                        <li>{{producto.DesProd2}}</li>
+                                    </ul>-->
+
+                                    <br /><br />
+
+                                    <!-- Quinty -->
+                                    <!--<div class="quinty">
+                                        <input id="inputCantidad" type="number" value="1" min="1" max="1000">
+                                    </div>-->
+                                    <a style="cursor:pointer;" (click)="addToCart(producto)" class="btn-round"><i class="icon-basket-loaded margin-right-5"></i> Agregar al Carrito</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Details Tab Section-->
+                        <div class="item-tabs-sec">
+
+                            <!-- Nav tabs -->
+                            <ul class="nav" role="tablist">
+                                <li role="presentation" class="active"><a href="#pro-detil" role="tab" data-toggle="tab">Detalles del producto</a></li>
+                            </ul>
+
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane fade in active" id="pro-detil">
+                                    <!-- List Details -->
+                                    <ul class="bullet-round-list">
+                                        <li *ngFor="let pd of producto.FichasProducto">
+                                            {{pd.Ficha}}
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="item-tabs-sec">
+
+                            <!-- Nav tabs -->
+                            <ul class="nav" role="tablist">
+                                <li role="presentation" class="active"><a href="#pro-detil2" role="tab" data-toggle="tab">Productos Relacionados</a></li>
+                            </ul>
+
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane fade in active" id="pro-detil2">
+
+                                    <div class="col-md-12" *ngIf="productos.length > 0">
+                                        <div class="row">
+                                            <article>
+                                                <div class="col-md-2" *ngFor="let p of productos;  let i=index">
+                                                    <swiper class="swiper" [config]="config" *ngIf="i<6" style="box-sizing: border-box;border: 1px solid #e5e5e5;">
+                                                        <div class="swiper-wrapper test">
+                                                            <img class="swiper-slide img-responsive" [src]="p.ImagenDefault.Path | sinimagen" alt="" (click)="goToProduct(p)" style="cursor:pointer;" />
+                                                        </div>
+                                                        <br />
+                                                        <span class="tag2">&nbsp;{{p.NombreCategoria}}</span> <a style="cursor:pointer;" (click)="goToProduct(p)" class="tittle2" title="Ver Producto">&nbsp;{{p.DesProd}}</a>
+                                                        <br />
+                                                        <div class="price2">&nbsp;${{p.PrecioVta | monto}} <p style="font-size:11px;color:red;">IVA Incluido</p></div>
+                                                        <a style="cursor:pointer;" class="cart-btn2" title="Agregar al carrito" (click)="addToCart(p)"><i class="icon-basket-loaded"></i></a>
+                                                        <br />
+                                                        <br />
+                                                    </swiper>
+                                                </div>
+                                            </article>
+                                        </div>
+                                    </div>
+
+                                    <p *ngIf="productos.length == 0">Sin productos relacionados</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>                     
+
+                </div>
+
+                <!--<div class="heading">
+                    <h2>Productos Relacionados</h2>
+                    <hr>
+                </div>
+
+                <br />
+
+                <div class="col-md-12" *ngIf="productos.length > 0">
+                    <div class="row">
+                        <article>
+                            <div class="col-md-2" *ngFor="let p of productos;  let i=index">
+                                <swiper class="swiper" [config]="config" *ngIf="i<6" style="box-sizing: border-box;border: 1px solid #e5e5e5;">
+                                    <div class="swiper-wrapper test">
+                                        <img class="swiper-slide img-responsive" [src]="p.ImagenDefault.Path | sinimagen" alt="" (click)="goToProduct(p)" style="cursor:pointer;"  />
+                                    </div>
+                                    <br />
+                                    <span class="tag">&nbsp;{{p.NombreCategoria}}</span> <a style="cursor:pointer;" (click)="goToProduct(p)" class="tittle" title="Ver Producto">&nbsp;{{p.DesProd}}</a>
+                                    <br />
+                                    <div class="price">&nbsp;${{p.PrecioVta | monto}} </div>
+                                    <a style="cursor:pointer;" class="cart-btn" title="Agregar al carrito" (click)="addToCart(p)"><i class="icon-basket-loaded"></i></a>
+                                    <br />
+                                    <br />
+                                </swiper>
+                            </div>
+                        </article>                          
+                    </div>
+                </div>
+
+                <p *ngIf="productos.length == 0">Sin productos relacionados</p>-->
+
+            </div>
+        </div>
+    </section>
+</div>
+

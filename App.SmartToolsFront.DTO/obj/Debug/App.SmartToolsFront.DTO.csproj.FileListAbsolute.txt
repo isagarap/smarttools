@@ -1,0 +1,10 @@
+C:\Users\vmiranda\documents\visual studio 2015\Projects\App.SmartToolsFront\App.SmartToolsFront.DTO\bin\Debug\App.SmartToolsFront.DTO.dll
+C:\Users\vmiranda\documents\visual studio 2015\Projects\App.SmartToolsFront\App.SmartToolsFront.DTO\bin\Debug\App.SmartToolsFront.DTO.pdb
+C:\Users\vmiranda\documents\visual studio 2015\Projects\App.SmartToolsFront\App.SmartToolsFront.DTO\obj\Debug\App.SmartToolsFront.DTO.dll
+C:\Users\vmiranda\documents\visual studio 2015\Projects\App.SmartToolsFront\App.SmartToolsFront.DTO\obj\Debug\App.SmartToolsFront.DTO.pdb
+C:\Users\vmiranda\documents\visual studio 2015\Projects\App.SmartToolsFront\App.SmartToolsFront.DTO\obj\Debug\App.SmartToolsFront.DTO.csprojResolveAssemblyReference.cache
+C:\Users\vmiranda\Documents\Sources\SmartToolsFront\App.SmartToolsFront.DTO\bin\Debug\App.SmartToolsFront.DTO.dll
+C:\Users\vmiranda\Documents\Sources\SmartToolsFront\App.SmartToolsFront.DTO\bin\Debug\App.SmartToolsFront.DTO.pdb
+C:\Users\vmiranda\Documents\Sources\SmartToolsFront\App.SmartToolsFront.DTO\obj\Debug\App.SmartToolsFront.DTO.csprojResolveAssemblyReference.cache
+C:\Users\vmiranda\Documents\Sources\SmartToolsFront\App.SmartToolsFront.DTO\obj\Debug\App.SmartToolsFront.DTO.dll
+C:\Users\vmiranda\Documents\Sources\SmartToolsFront\App.SmartToolsFront.DTO\obj\Debug\App.SmartToolsFront.DTO.pdb

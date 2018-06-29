@@ -1,0 +1,133 @@
+﻿<!-- Top bar -->
+<div class="top-bar">
+    <div class="container">
+        <p>Bienvenid@ a Smart Tools!</p>
+        <div class="right-sec">
+            <ul *ngIf="logued == false">
+                <li><a [routerLink]="['/register']">Registrarse</a></li>
+                <li><a [routerLink]="['/login']">Iniciar Sesión</a></li>
+            </ul>
+            <ul *ngIf="logued == true">
+                <li>
+                    <a (click)="redirectToProfile()" style="cursor:pointer;" title="Mi Perfil">{{userName}}</a>&nbsp;&nbsp;
+                    <i class="fa fa-sign-out" style="cursor:pointer;" title="Cerrar Sesión" (click)="logout()" ></i>
+                </li>
+            </ul>
+            <div class="social-top"> 
+                <a href="https://www.facebook.com/tiendasmarttools" title="Facebook"><i class="fa fa-facebook-square" aria-hidden="true"></i></a> 
+                <!--<a href="#."><i class="fa fa-twitter"></i></a> 
+                <a href="#."><i class="fa fa-linkedin"></i></a> 
+                <a href="#."><i class="fa fa-dribbble"></i></a> 
+                <a href="#."><i class="fa fa-pinterest"></i></a>--> 
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Header -->
+<header>
+    <div class="container">
+        <div class="logo"> <a href=""><img src="../../../../images/Smart-Tools_logo.jpg" alt="" style="width:210px;" /></a> </div>
+
+        <div class="search-cate">
+            <input type="search" placeholder="Ingrese su búsqueda aquí ..." [(ngModel)]="searchValue" (keyup.enter)="search()" id="inputSearch" />
+            <button class="submit" type="button" (click)="search()" title="Buscar"><i class="icon-magnifier"></i></button>
+        </div>
+
+        <!-- Cart Part -->
+        <ul class="nav navbar-right cart-pop">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <span class="itm-cont">{{productos.length}}</span> <i class="flaticon-shopping-bag"></i> <strong>Mi Carrito</strong> <br>
+                    <span>{{productos.length}} producto(s) - ${{subtotal | monto}}</span>
+                </a>
+                <ul class="dropdown-menu">
+
+                    <li *ngFor="let producto of productos">
+                        <!--<div class="media-left"> <a href="" class="thumb"> <img src="images/item-img-1-1.jpg" class="img-responsive" alt=""> </a> </div>-->
+                        <div class="media-left"> <a href="" class="thumb"> <img [src]="producto.ImagenDefault.Path | sinimagen" class="img-responsive" alt=""> </a> </div>
+                        <div class="media-body"> <a href="" class="tittle">{{producto.DesProd}}</a> <span style="text-align:right;cursor:pointer;" (click)="removeItem(producto)" title="Eliminar" class="fa fa-times"></span></div>
+                        <!--<div class="media-body"> <a href="" class="tittle">Funda Para Ebook 7" 128GB full HD</a> <span style="color:red;cursor:pointer;">Quitar</span></div>-->
+                    </li>
+
+                    <!--<li class="btn-cart"> <a href="" class="btn-round" [routerLink]="['/shoppingcart']">Ver Carrito</a> </li>-->
+                    <li class="btn-cart"> <a style="cursor:pointer;" class="btn-round" (click)="goToCarrito()">Ver Carrito</a> </li>
+
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Nav -->
+    <nav class="navbar ownmenu">
+        <div class="container">
+
+            <!-- Categories -->
+            <div class="cate-lst">
+                <a data-toggle="collapse" class="cate-style" [routerLink]="['/home']"><span class="ion-home"></span>&nbsp;&nbsp;Inicio </a>
+            </div>
+
+            <!-- Navbar Header -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-open-btn" aria-expanded="false"> <span><i class="fa fa-navicon"></i></span> </button>
+            </div>
+            <!-- NAV -->
+            <div class="collapse navbar-collapse" id="nav-open-btn">
+                <ul class="nav">
+
+                    <!-- Mega Menu Nav -->
+                    <li class="dropdown megamenu">
+                        <a href="index-2.html" class="dropdown-toggle" data-toggle="dropdown"><span class="ion-navicon-round"></span>&nbsp;&nbsp;Categorías </a>
+                        <div class="dropdown-menu animated-2s fadeInUpHalf">
+                            <div class="mega-inside">
+                                <div class="top-lins">
+                                    <ul>
+                                        <li><h6>Nuestras Categorías</h6></li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="row">
+                                    <br />
+                                    <div class="col-sm-4">
+                                        <ul>
+                                            <li *ngFor="let c of categorias | categoriamenupipe:1">
+                                                <a style="cursor:pointer;" (click)="selectCategoria(c)" >{{c.DesGrupo}}</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <ul>
+                                            <li *ngFor="let c of categorias | categoriamenupipe:2">
+                                                <a style="cursor:pointer;" (click)="selectCategoria(c)">{{c.DesGrupo}}</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <ul>
+                                            <li *ngFor="let c of categorias | categoriamenupipe:3">
+                                                <a style="cursor:pointer;" (click)="selectCategoria(c)">{{c.DesGrupo}}</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li> <a style="cursor:pointer;" [routerLink]="['/location']"><span class="ion-ios-location"></span>&nbsp;&nbsp;Ubicación </a></li>
+                    <!--<li> <a style="cursor:pointer;" [routerLink]="['/about']"><span class="ion-help-circled"></span>&nbsp;&nbsp;Nosotros </a></li>-->
+                    <li> <a style="cursor:pointer;" [routerLink]="['/contactus']"><span class="ion-android-mail"></span>&nbsp;&nbsp;Contacto </a></li>
+                    <li> <a style="cursor:pointer;" [routerLink]="['/limio']"><span class="ion-android-list"></span>&nbsp;&nbsp;Registra tu Lumio </a></li>
+                </ul>
+            </div>
+
+            <!-- NAV RIGHT -->
+            <div class="nav-right" *ngIf="!logued"> 
+                <!--<span class="call-mun" style="cursor:pointer;"><i class="fa fa-sign-in"></i> <strong>Iniciar Sesión</strong></span>-->
+                <ul>
+                    <li> <a style="cursor:pointer;" [routerLink]="['/login']"><span class="fa fa-sign-in"></span>&nbsp;&nbsp;Iniciar Sesión</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>

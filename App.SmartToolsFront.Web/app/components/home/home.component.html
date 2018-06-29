@@ -1,0 +1,220 @@
+﻿<!-- Slid Sec -->
+<div class="animated fadeIn fast">
+    <section class="slid-sec">
+        <div class="container">
+            <div class="container-fluid">
+                <div class="row">
+
+                    <!-- Main Slider  -->
+                    <div class="col-md-9 no-padding">
+
+                        <!-- Main Slider Start -->
+                        <div class="tp-banner-container" *ngIf="!isMobile">
+                            <div class="tp-banner">
+                                <ul>
+
+                                    <li *ngFor="let b of banners | bannerPipe:1"
+                                        data-transition="random" data-slotamount="7" 
+                                        data-masterspeed="300" data-saveperformance="off">
+
+                                        <img [src]="b.Url | sinimagen" alt="slider" data-bgposition="center bottom" data-bgfit="cover" data-bgrepeat="no-repeat">
+
+                                        <!--<div class="tp-caption sfl tp-resizeme"
+                                             data-x="left" data-hoffset="60"
+                                             data-y="center" data-voffset="-110"
+                                             data-speed="800"
+                                             data-start="800"
+                                             data-easing="Power3.easeInOut"
+                                             data-splitin="chars"
+                                             data-splitout="none"
+                                             data-elementdelay="0.03"
+                                             data-endelementdelay="0.4"
+                                             data-endspeed="300"
+                                             style="z-index: 5; font-size:30px; font-weight:500; color:#888888;  max-width: auto; max-height: auto; white-space: nowrap;">{{b.Nombre}}</div>-->
+
+                                        <!--<div class="tp-caption sfr tp-resizeme"
+                                             data-x="left"
+                                             data-hoffset="60"
+                                             data-y="center" data-voffset="-60"
+                                             data-speed="800"
+                                             data-start="1000"
+                                             data-easing="Power3.easeInOut"
+                                             data-splitin="chars"
+                                             data-splitout="none"
+                                             data-elementdelay="0.03"
+                                             data-endelementdelay="0.1"
+                                             data-endspeed="300"
+                                             style="z-index: 6; font-size:50px; color:#0088cc; font-weight:800; white-space: nowrap;">{{b.Descripcion}}</div>-->
+
+                                        <!--<div class="tp-caption sfr tp-resizeme"
+                                             data-x="left"
+                                             data-hoffset="60"
+                                             data-y="center" data-voffset="5"
+                                             data-speed="800"
+                                             data-start="1300"
+                                             data-easing="Power3.easeInOut"
+                                             data-splitin="chars"
+                                             data-splitout="none"
+                                             data-elementdelay="0.03"
+                                             data-endelementdelay="0.4"
+                                             data-endspeed="300"
+                                             style="z-index: 5; font-size:36px; font-weight:800; color:#000;  max-width: auto; max-height: auto; white-space: nowrap;">${{b.Precio | monto}}</div>-->
+
+                                        <!--<div class="tp-caption lfb tp-resizeme scroll"
+                                             data-x="left"
+                                             data-hoffset="60"
+                                             data-y="center" data-voffset="80"
+                                             data-speed="800"
+                                             data-start="1300"
+                                             data-easing="Power3.easeInOut"
+                                             data-elementdelay="0.1"
+                                             data-endelementdelay="0.1"
+                                             data-endspeed="300"
+                                             data-scrolloffset="0"
+                                             style="z-index: 8;"><a style="cursor:pointer;" class="btn-round big" (click)="goToProduct(b)" >Ver Producto</a></div>-->
+
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Main Slider  -->
+                    <div class="col-md-3 no-padding">
+                        <div *ngFor="let b of banners | bannerPipe:2; let i=index">
+                            <div class="week-sale-bnr2" [style.background]="getStyle(b)" *ngIf="i<2">
+                                <h4>{{b.Nombre}}</h4>
+                                <p> {{b.Descripcion}} </p>
+                                <a style="cursor:pointer" class="btn-round" (click)="goToProduct(b)">Ver Producto</a>
+                            </div>
+                        </div>                        
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Content -->
+    <div id="content">
+
+        <!-- Shipping Info -->
+        <section class="light-gry-bg shipping-info">
+            <br />
+            <div class="container">
+                <ul>
+
+                    <!-- Free Shipping -->
+                    <li>
+                        <div class="media-left"> <i class="ion-android-done-all"></i> </div>
+                        <div class="media-body">
+                            <h5>Calidad Garantizada</h5>
+                            <span>Productos de calidad</span>
+                        </div>
+                    </li>
+                    <!-- Money Return -->
+                    <li>
+                        <div class="media-left"> <i class="flaticon-arrows"></i> </div>
+                        <div class="media-body">
+                            <h5>Pago Seguro</h5>
+                            <span>Paga sin riesgos</span>
+                        </div>
+                    </li>
+                    <!-- Support 24/7 -->
+                    <li>
+                        <div class="media-left"> <i class="ion-ios-checkmark-outline"></i> </div>
+                        <div class="media-body">
+                            <h5>Garantía</h5>
+                            <span>Productos con garantía</span>
+                        </div>
+                    </li>
+                    <!-- Safe Payment -->
+                    <li>
+                        <div class="media-left"> <i class="flaticon-cash"></i> </div>
+                        <div class="media-body">
+                            <h5>Precios más bajos</h5>
+                            <span>Revisa nuestros precios</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <br />
+        </section>
+
+        <br />
+
+        <!-- tab Section -->
+        <section class="light-gry-bg featur-tabs padding-top-60 padding-bottom-60">
+            <div class="container">
+
+                <div class="heading">
+                    <h2>Productos Destacados</h2>
+                    <hr>
+                </div>
+
+                <div class="item-slide-5 with-nav">
+                    <div class="product" *ngFor="let p of productos | productosDestacados:'S'">
+                        <article>
+                            <img class="img-responsive" [src]="p.ImagenDefault.Path | sinimagen" alt="" style="cursor:pointer;" (click)="goToProduct(p)" title="Ver Producto" >                            
+                            <span class="tag">{{p.NombreCategoria}}</span> <a style="cursor:pointer;" (click)="goToProduct(p)" class="tittle" title="Ver Producto">{{p.DesProd}}</a>
+                            <br />
+                            <div class="price">${{p.PrecioVta | monto}} <p style="font-size:11px;color:red;">IVA Incluido</p></div>
+                            <a style="cursor:pointer;" class="cart-btn" (click)="addToCart(p)"><i class="icon-basket-loaded"></i></a>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+       
+
+        <!-- Main Tabs Sec -->
+        <!--<section class="main-tabs-sec padding-top-60 padding-bottom-0">
+            <div class="container">
+                <div class="heading">
+                    <h2>Productos Destacados</h2>
+                    <hr>
+                </div>
+                <br />
+
+                <div class="item-slide-5 with-bullet no-nav">
+                    <div class="product" *ngFor="let p of productos">
+                        <article>
+                            <img class="img-responsive" [src]="p.ImagenDefault.Path | sinimagen" alt="" style="cursor:pointer;" (click)="goToProduct(p)" title="Ver Producto">
+                            <span class="tag">{{p.NombreCategoria}}</span> <a style="cursor:pointer;" (click)="goToProduct(p)" class="tittle" title="Ver Producto">{{p.DesProd}}</a>
+                            <br />
+                            <div class="price">${{p.PrecioVta | monto}} </div>
+                            <a style="cursor:pointer;" class="cart-btn" (click)="addToCart(p)"><i class="icon-basket-loaded"></i></a>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>-->
+
+        <br /><br />
+
+        <!-- Newslatter -->
+        <section class="newslatter">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3>Suscribete con nosotros! <span>Recibe nuestras ofertas</span></h3>
+                    </div>
+                    <div class="col-md-6">
+                        <form>
+                            <input type="email" name="mailSus" [(ngModel)]="emailSuscripcion" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" maxlength="100" placeholder="Ingresa tu email aquí...">
+                            <button type="button" (click)="suscribe()">Suscribirse</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+    <!-- End Content --> 
+
+</div>
+

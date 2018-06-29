@@ -1,0 +1,49 @@
+﻿<div class="animated fadeIn fast">
+    <!-- Linking -->
+    <div class="linking">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li><a style="cursor:pointer;" [routerLink]="['/home']">Home</a></li>
+                <li class="active">Ubicación</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- Contact -->
+    <section class="contact-sec padding-top-40 padding-bottom-80">
+        <div class="container">
+
+            <!-- Conatct -->
+            <div class="contact">
+                <div class="contact-form">
+
+                    <div class="heading">
+                        <h2>Ubicación</h2>
+                        <hr />
+                    </div>
+
+                    <p>
+                        Nuestras oficinas se encuentran ubicadas en: Yungay 704 Of 104, Valdivia, Chile.
+                    </p>
+
+                    <br />
+
+                    <ng2-map zoom="14"
+                             center="Valdivia, Chile"
+                             mapTypeId="roadmap">
+                        <marker *ngFor="let pos of positions"
+                                [position]="pos"
+                                (initialized$)="onMarkerInit($event)"></marker>
+                    </ng2-map>
+
+                    <br />
+                    <br />
+
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+

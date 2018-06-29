@@ -1,0 +1,179 @@
+﻿@model App.SmartToolsFront.Web.ViewModels.TbkViewModel
+
+<link href="~/css/bootstrap.min.css" rel="stylesheet" />
+<script src="~/js/vendors/jquery/jquery.min.js"></script>
+<script src="~/js/vendors/bootbox.min.js"></script>
+
+<style>
+    .glyphicon {
+        font-size: 35px;
+    }
+</style>
+
+<div class="container">
+
+    @if (Model.step == "Error")
+    {
+        <div class="titulo-pagina">
+            <h3 style="text-align:center;">PROBLEMAS AL GENERAR TRANSACCIÓN</h3>
+            <hr>
+        </div>
+
+        <div class="jumbotron">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-11">
+                        <h3><strong>RESUMEN DE LA OPERACIÓN</strong></h3>
+                    </div>
+                    <div class="col-md-1" style="padding-top:20px">
+                        <span class="glyphicon glyphicon-alert" style="width:60px;height:60px;"></span>
+                    </div>
+                </div>
+            </div>
+
+            <br />
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="alert alert-danger" role="alert">@Model.message</div>
+                </div>
+            </div>
+
+        </div>
+    }
+    else if (@Model.step != "End")
+    {
+        <div class="titulo-pagina">
+            <h3 style="text-align:center;">PROCESANDO...</h3>
+            <hr>
+        </div>
+
+        <div class="jumbotron" style="display:none">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-11">
+                        <h3><strong>RESUMEN DE LA OPERACIÓN</strong></h3>
+                    </div>
+                    <div class="col-md-1" style="padding-top:20px">
+                        <span class="glyphicon glyphicon-ok-circle" style="width:60px;height:60px;"></span>
+                    </div>
+                </div>
+            </div>          
+
+            <form action="@Model.url" method='post'>
+                <input type='hidden' name='token_ws' value="@Model.token">
+                <input type='submit' id="btnX" value='Continuar &raquo;'>
+            </form>
+
+            <input type="hidden" id="txt_name" value="@Model.step" />
+        </div>
+    }
+    else if (@Model.step == "End")
+    {
+        <div class="titulo-pagina">
+            <h3 style="text-align:center;">TRANSACCIÓN FINALIZADA CORRECTAMENTE</h3>
+            <hr>
+        </div>
+
+        <div class="jumbotron">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-11">
+                        <h3><strong>RESUMEN DE LA OPERACIÓN</strong></h3>
+                    </div>
+                    <div class="col-md-1" style="padding-top:20px">
+                        <span class="glyphicon glyphicon-ok-circle"></span>
+                    </div>
+                </div>
+            </div>
+
+            <br />
+
+            <div class="table-responsive">
+                <table class="table table-sm table-striped" id="resTable">
+                    <thead>
+                        <tr>
+                            <th>Cliente</th>
+                            <th>Monto</th>
+                            <th>Orden de Compra</th>
+                            <th>Codigo Autorización</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><label for="myalueClient"></label></td>
+                            <td><label for="myalueMonto"></label></td>
+                            <td><label for="myalueBuyOrder"></label></td>
+                            <td><label for="myalueCodigo"></label></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <br />
+
+            @*<div class="row">
+                <div class="col-md-12">
+                    <button type="button" class="btn-round" onclick="redirectToHome()">Volver al Inicio</button>
+                </div>
+            </div>*@
+
+            <br />
+
+            <form action="@Model.url" method='post'>
+                <input type='hidden' name='token_ws' value="@Model.token">
+                <input type='submit' style="display:none" id="btnX" value='Continuar &raquo;'>
+            </form>
+
+            <input type="hidden" id="txt_name" value="@Model.step" />
+        </div>
+    }
+
+</div>
+    
+<script>
+    $(document).ready(function () {
+        $("resTable").hide();
+        $('#btnVictor').hide();
+
+        var bla = $('#txt_name').val();
+        switch (bla) {
+            case "End":
+                $("lblProcesando").hide();
+                $('#txt_name').val("TERMINO OK");
+
+                var monto = $('#amount').val();
+                var codigo = $('#authorizationCode').val();
+                var bo = $('#buyOrder').val();
+                var cn = $('#clientName').val();
+
+                var cnn = "";
+                if (localStorage.getItem('currentUser') != null) {
+                    cnn = JSON.parse(localStorage.getItem('currentUser')).Nombre;
+                }
+
+                $("label[for='myalueMonto']").html('$' + monto);
+                $("label[for='myalueCodigo']").html(codigo);
+                $("label[for='myalueBuyOrder']").html(bo);
+                $("label[for='myalueClient']").html(cnn);
+
+                $("resImg").show();
+                $("resTable").show();
+
+                $('#btnVictor').show();
+
+                break;
+            case "Error":
+                $("lblProcesando").hide();
+                $('#txt_name').val("ERROR");
+                break;
+            default:
+                $("#btnX").click();
+                break;
+        }
+    });
+
+    function redirectToHome() {
+        window.location.href = window.location.origin;
+    }
+</script>

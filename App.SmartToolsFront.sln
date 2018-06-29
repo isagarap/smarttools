@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.SmartToolsFront.Web", "App.SmartToolsFront.Web\App.SmartToolsFront.Web.csproj", "{5D541AC4-CA58-4E0B-9579-07CE01AC9188}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.SmartToolsFront.DTO", "App.SmartToolsFront.DTO\App.SmartToolsFront.DTO.csproj", "{7CDC6A63-F1D2-4741-A06A-F86617310B99}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.SmartToolsFront.DAL", "App.SmartToolsFront.DAL\App.SmartToolsFront.DAL.csproj", "{769E05E4-3842-4F59-B808-D3922F56B88D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5D541AC4-CA58-4E0B-9579-07CE01AC9188}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D541AC4-CA58-4E0B-9579-07CE01AC9188}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D541AC4-CA58-4E0B-9579-07CE01AC9188}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D541AC4-CA58-4E0B-9579-07CE01AC9188}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CDC6A63-F1D2-4741-A06A-F86617310B99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CDC6A63-F1D2-4741-A06A-F86617310B99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CDC6A63-F1D2-4741-A06A-F86617310B99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CDC6A63-F1D2-4741-A06A-F86617310B99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{769E05E4-3842-4F59-B808-D3922F56B88D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{769E05E4-3842-4F59-B808-D3922F56B88D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{769E05E4-3842-4F59-B808-D3922F56B88D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{769E05E4-3842-4F59-B808-D3922F56B88D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 4
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://proyectvj.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = App.SmartToolsFront.Web\\App.SmartToolsFront.Web.csproj
+		SccProjectName1 = App.SmartToolsFront.Web
+		SccLocalPath1 = App.SmartToolsFront.Web
+		SccProjectUniqueName2 = App.SmartToolsFront.DTO\\App.SmartToolsFront.DTO.csproj
+		SccProjectName2 = App.SmartToolsFront.DTO
+		SccLocalPath2 = App.SmartToolsFront.DTO
+		SccProjectUniqueName3 = App.SmartToolsFront.DAL\\App.SmartToolsFront.DAL.csproj
+		SccProjectName3 = App.SmartToolsFront.DAL
+		SccLocalPath3 = App.SmartToolsFront.DAL
+	EndGlobalSection
+EndGlobal

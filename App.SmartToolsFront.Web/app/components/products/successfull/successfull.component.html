@@ -1,0 +1,38 @@
+﻿<div class="animated fadeIn fast">
+    <section>
+        <div class="container">
+            <!-- Payout Method -->
+
+            <div class="order-success">
+                <i class="fa fa-check"></i>
+                <h6>Felicitaciones! Su compra ha sido exitosa.</h6>
+                <br />
+                <p>Nota de Venta: {{NumNotaVenta}}</p>
+                <br />
+                <p>Para finalizar debes realizar el pago de tus productos a una de las siguientes cuentas.</p>
+                <br />
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="contact-info">
+                            <h5>Información de Pago</h5>
+                            <hr>
+                            <h6> A nombre de:</h6>
+                            <p>{{Nombre}}</p>
+                            <h6>Rut:</h6>
+                            <p>{{RutPago}}</p>
+                            <h6>Email:</h6>
+                            <p>{{EmailPago}}</p>
+                            <h6>Cta. Corriente Bco. Itau:</h6>
+                            <p>{{CuentaCorriente1}}</p>
+                            <h6>Cta. Corriente Bco. Estado:</h6>
+                            <p>{{CuentaCorriente2}}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <a class="btn-round" [routerLink]="['\home']">Ir al Inicio</a>
+            </div>
+        </div>
+    </section>
+</div>

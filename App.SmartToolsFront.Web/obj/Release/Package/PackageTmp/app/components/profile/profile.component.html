@@ -1,0 +1,278 @@
+﻿<div class="animated fadeIn fast">
+    <!-- Linking -->
+    <div class="linking">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li><a style="cursor:pointer;" [routerLink]="['/home']">Home</a></li>
+                <li class="active">Perfil</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- Contact -->
+    <section class="contact-sec padding-top-40 padding-bottom-80">
+        <div class="container">
+
+            <!-- Conatct -->
+            <div class="contact">
+                <div class="contact-form">
+                    <!-- FORM  -->
+                    <form role="form" id="contact_form" class="contact-form" #myForm="ngForm">
+                        <div class="row">
+
+                            <div class="col-md-4">
+                                <div class="contact-info">
+                                    <h5>Perfil de Usuario</h5>
+                                    <hr>
+                                    <h6> Nombre:</h6>
+                                    <p>{{nombreShow}}</p>
+                                    <h6>Teléfono:</h6>
+                                    <p>{{TelefonoShow}}</p>
+                                    <h6>Email:</h6>
+                                    <p>{{EmailShow}}</p>
+                                </div>
+                            </div>
+
+                            <div class="col-md-8">
+
+                                <div class="contact-info">
+
+                                    <div class="heading">
+                                        <h2>Mi Información</h2>
+                                    </div>
+
+                                    <ul class="row">
+                                        <li class="col-sm-6">
+                                            <label>
+                                                Rut
+                                                <input type="text" class="form-control" name="rut" id="rut" placeholder="Rut"
+                                                        [(ngModel)]="user.Rut" #rut="ngModel" required disabled />
+                                            </label>
+                                            <p *ngIf="rut.errors && (rut.dirty || rut.touched)" class="text-danger">
+                                                Rut es requerido
+                                            </p>
+                                        </li>
+                                        <li class="col-sm-6">
+                                            <label>
+                                                Nombre
+                                                <input type="text" class="form-control" name="nombre" id="name" placeholder="Nombre" 
+                                                        [(ngModel)]="user.NomAux" #nombre="ngModel" required disabled />
+                                            </label>
+                                            <p *ngIf="nombre.errors && (nombre.dirty || nombre.touched)" class="text-danger">
+                                                Nombre es requerido
+                                            </p>
+                                        </li>
+                                        <li class="col-sm-6">
+                                            <label>
+                                                Dirección
+                                                <input type="text" class="form-control" name="direccion" id="direccion" placeholder="Dirección"
+                                                        [(ngModel)]="user.DirAux" #direccion="ngModel" required disabled />
+                                            </label>
+                                            <p *ngIf="direccion.errors && (direccion.dirty || direccion.touched)" class="text-danger">
+                                                Dirección es requerido
+                                            </p>
+                                        </li>
+                                        <li class="col-sm-6">
+                                            <label>
+                                                Número
+                                                <input type="text" class="form-control" name="numero" id="numero" placeholder="Número"
+                                                        [(ngModel)]="user.DirNum" #numero="ngModel" required disabled />
+                                            </label>
+                                            <p *ngIf="direccion.errors && (direccion.dirty || direccion.touched)" class="text-danger">
+                                                Número es requerido
+                                            </p>
+                                        </li>
+                                        <li class="col-sm-12">
+                                            <label>
+                                                Región
+                                                <select id="selReg" name="selReg" class="form-control" disabled></select>
+                                            </label>
+                                        </li>
+                                        <li class="col-sm-12">
+                                            <label>
+                                                Ciudad / Provincia
+                                                <select id="selCiu" name="selReg" class="form-control" disabled></select>
+                                            </label>
+                                        </li>
+                                        <li class="col-sm-12">
+                                            <label>
+                                                Comuna
+                                                <select id="selCom" name="selReg" class="form-control" disabled></select>
+                                            </label>
+                                        </li>
+                                            
+                                    </ul>
+
+                                    <br />
+
+                                    <div class="col-md-12">
+                                        <div class="col-md-3">&nbsp;</div>
+                                        <div class="col-md-6" align="center">
+                                            <div class="row">
+                                                <button type="button" class="btn btn-inverse text-center" data-toggle="modal" data-target="#myModal">Cambiar Contraseña</button>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">&nbsp;</div>
+                                    </div>
+                                    <br />
+
+                                </div>
+
+                                <div class="col-md-12">&nbsp;</div>
+                                <br /><br />
+                                    
+
+                            </div>
+
+                        </div>
+                    </form>
+
+                    <form role="form" id="grillaCompras" class="contact-form">
+                        <div class="contact-info">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="contact">
+                                        <h4>Mis Compras</h4>
+                                        <br />
+                                        <div class="table-responsive">
+                                            <table class="table table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Nota de Venta</th>
+                                                        <th>Fecha</th>
+                                                        <th>Estado</th>
+                                                        <th>Facturada</th>
+                                                        <th>Despachada</th>
+                                                        <th>Monto</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let compra of comprasCliente">
+                                                        <td>{{compra.NVNumero}}</td>
+                                                        <td>{{compra.Fecha | date: 'dd/MM/yyyy'}}</td>
+                                                        <td>{{compra.Estado == 'A' ? 'Aprobada' : (compra.Estado == 'C' ? 'Concluida' : (compra.Estado == 'N' ? 'Nula' : ''))}}</td>
+                                                        <td>{{compra.Facturada == 0 ? 'No' : 'Si'}}</td>
+                                                        <td>{{compra.Despachada == 0 ? 'No' : 'Si'}}</td>
+                                                        <td>${{compra.Monto | monto}}</td>
+                                                        <td><img class="img-responsive" style="max-width:15px;cursor:pointer;" (click)="downloadPDF(compra)" src="../../../images/document.ico" title="Descargar Factura" /></td>
+                                                    </tr>
+                                                    <tr *ngIf="comprasCliente.length == 0">
+                                                        <td colspan="7" align="center">Sin registros</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </form>
+
+                    <br />
+
+                    <form role="form" id="grillaSaldos" class="contact-form">
+                        <div class="contact-info">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="contact">
+                                        <h4>Estado de Cuentas</h4>
+                                        <br />
+                                        <div class="table-responsive">
+                                            <table class="table table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="font-size:12px;">Documento</th>
+                                                        <th style="font-size:12px;">Nro</th>
+                                                        <th style="font-size:12px;">F. Emisión</th>
+                                                        <th style="font-size:12px;">F. Vencimiento</th>
+                                                        <th style="font-size:12px;" class="text-right">Debe</th>
+                                                        <th style="font-size:12px;" class="text-right">Haber</th>
+                                                        <th style="font-size:12px;" class="text-right">Saldo</th>
+                                                        <!--<th style="font-size:12px;">Pago</th>-->
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let saldo of saldosCliente">
+                                                        <td style="font-size:12px;" [ngClass]="(saldo.Estado == 'Vencido') ? 'text-danger' : ''">{{saldo.Documento}}</td>
+                                                        <td style="font-size:12px;" [ngClass]="(saldo.Estado == 'Vencido') ? 'text-danger' : ''">{{saldo.Nro}}</td>
+                                                        <td style="font-size:12px;" [ngClass]="(saldo.Estado == 'Vencido') ? 'text-danger' : ''">{{saldo.FechaEmision | date: 'dd/MM/yyyy'}}</td>
+                                                        <td style="font-size:12px;" [ngClass]="(saldo.Estado == 'Vencido') ? 'text-danger' : ''">{{saldo.FechaVcto | date: 'dd/MM/yyyy'}}</td>
+                                                        <td style="font-size:12px;" [ngClass]="(saldo.Estado == 'Vencido') ? 'text-danger' : ''" class="text-right">${{saldo.Debe | monto}}</td>
+                                                        <td style="font-size:12px;" [ngClass]="(saldo.Estado == 'Vencido') ? 'text-danger' : ''" class="text-right">${{saldo.Haber | monto}}</td>
+                                                        <td style="font-size:12px;" [ngClass]="(saldo.Estado == 'Vencido') ? 'text-danger' : ''" class="text-right">${{saldo.Saldo | monto}}</td>                                                       
+                                                        <!--<td style="font-size:12px;" [ngClass]="(saldo.Estado == 'Vencido') ? 'text-danger' : ''">{{saldo.Pago}}</td>-->
+                                                    </tr>
+                                                    <tr *ngIf="saldosCliente.length == 0">
+                                                        <td colspan="7" align="center">Sin registros</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Cambiar Contraseña</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="pass1">Contraseña Actual<span class="starv"> *</span></label>
+                            <input id="pass1" class="form-control" name="pass1" 
+                                   placeholder="Contraseña Actual" type="password" required />
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="pass2">Nueva Contraseña<span class="starv"> *</span></label>
+                            <input id="pass2" class="form-control" name="pass2"
+                                   placeholder="Nueva Contraseña" type="password" required />
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="pass3">Repita Nueva Contraseña<span class="starv"> *</span></label>
+                            <input id="pass3" class="form-control" name="pass3"
+                                   placeholder="Repita Nueva Contraseña" type="password" required />
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <!--<input type="text" class="form-control" readonly
+                                   style="border:solid;border-width:0px;color:red;" value="" id="txtMsg" />-->
+                            <label id="lblMsg" class="form-control" style="border:solid;border-width:0px;color:red;"></label>
+                        </div>
+                    </div>
+                </div>
+
+                
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-inverse" (click)="cambiarPassword()">Aceptar</button>
+                <button type="button" class="btn btn-inverse" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+

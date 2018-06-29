@@ -1,0 +1,143 @@
+﻿<div class="animated fadeIn fast">
+
+    <div class="linking">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li class="active">Búsqueda</li>
+            </ol>
+        </div>
+    </div>
+
+    <div id="content">
+
+        <!-- Products -->
+        <section class="padding-top-40 padding-bottom-60">
+            <div class="container">
+                <div class="row">
+
+                    <!-- Shop Side Bar -->
+                    <div class="col-md-3">
+                        <div class="shop-side-bar">
+
+                            <!-- Categories -->
+                            <h6>Categorías</h6>
+
+                            <div class="pre-scrollable">
+                                <div class="checkbox checkbox-primary vmm">
+                                    <ul>
+                                        <li *ngFor="let c of categorias">
+                                            <input id="{{c.Id}}" class="styled" type="checkbox" [checked]="c.selected" (change)="changeFilter(c, $event)">
+                                            <label for="{{c.Id}}">&nbsp;&nbsp; {{c.DesGrupo}} </label>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <br />
+
+                            <a class="btn-round" style="cursor:pointer;" (click)="search()"><i class="fa fa-filter"></i> Filtrar</a>
+                            <button class="btn-round" style="cursor:pointer;border:none;" (click)="cleanFilters()"><i class="fa fa-eraser"></i> Limpiar</button>
+                            <!--<a class="btn-round" style="cursor:pointer;" (click)="cleanFilters()"><i class="fa fa-eraser"></i> Limpiar</a>-->
+                            <br />
+                            <br />
+
+                        </div>
+                    </div>
+
+                    <!-- Products -->
+                    <div class="col-md-9">
+
+                        <!-- Short List -->
+                        <div class="short-lst">
+                            <h2>Resultados de la búsqueda</h2>
+                            <ul>
+                                <!-- Short List -->
+                                <li>
+                                    <p>Mostrando {{showXfromX}} de {{productos.length}} resultados</p>
+                                </li>
+                                <!-- Short  -->
+                                <li>
+                                    <select id="selectItemsByPage" style="border:none;" (change)="changeItemsByPages()">
+                                        <option id="P6" value="6">Mostrar 6</option>
+                                        <option id="P12" value="12">Mostrar 12</option>
+                                        <option id="P24" value="24">Mostrar 24</option>
+                                    </select>
+                                </li>
+                                <!-- by Default -->
+                                <li>
+                                    <select id="selectOrder" style="border:none;" (change)="changeOrder()">
+                                        <option value="1">Ordenar por defecto</option>
+                                        <option value="2">Ordenar por menor precio</option>
+                                        <option value="3">Ordenar por mayor precio</option>
+                                    </select>
+                                </li>
+
+                            </ul>
+                        </div>
+
+                        <div *ngIf="productos.length == 0">
+                            <h5>Sin resultados</h5>
+                        </div>
+
+                        <hr />
+
+                        <div *ngIf="productos.length > 0">
+
+                            <div class="row" *ngFor="let p of productos | searchfilter: currentPage">
+
+                                <div class="col-md-12 center-column">
+
+                                    <div class="product-list">
+
+                                        <div class="row">
+                                            <div class="image col-sm-3">
+                                                <a (click)="goToProduct(p)" style="cursor:pointer">
+                                                    <img class="img-responsive" [src]="p.ImagenDefault.Path | sinimagen" alt="Imagen" style="max-height:160px;max-width:160px" />
+                                                </a>
+                                            </div>
+
+                                            <div class="name-desc col-sm-5">
+                                                <div class="name"><a (click)="goToProduct(p)" style="cursor:pointer">{{p.DesProd}}</a></div>
+                                                <div class="description">{{p.NombreCategoria}}</div>
+                                            </div>
+
+                                            <div class="actions col-sm-4">
+                                                <div>
+                                                    <div class="price">${{p.PrecioVta | monto}}</div>
+                                                    <div class="add-to-cart"><a (click)="addToCart(p)" title="Agregar al carrito" style="cursor:pointer" class="btn-round"><i class="glyphicon glyphicon-shopping-cart"></i>&nbsp; Agregar al Carrito</a></div>
+
+                                                    <ul>
+                                                        <li><a style="color:red;"><strong>IVA Incluido</strong></a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <hr />
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="text-center" *ngIf="productos.length > 6">
+                                <ul class="pagination">
+                                    <li *ngIf="currentPage > 1"><a style="cursor:pointer;" (click)="changePage(currentPage - 1)" aria-label="Atrás"> <i class="fa fa-angle-left"></i> </a> </li>
+
+                                    <li *ngFor="let p of pagination">
+                                        <a style="cursor:pointer;" (click)="changePage(p.pag)" [ngClass]="(currentPage==p.pag)?'active':''">{{p.pag}}</a>
+                                    </li>
+
+                                    <li *ngIf="currentPage < pagination.length"><a style="cursor:pointer;" (click)="changePage(currentPage+ 1)" aria-label="Siguiente"> <i class="fa fa-angle-right"></i> </a> </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+</div>

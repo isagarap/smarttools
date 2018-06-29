@@ -1,0 +1,139 @@
+﻿<div class="animated fadeIn fast">
+
+    <!-- Linking -->
+    <div class="linking">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li><a style="cursor:pointer;" [routerLink]="['/home']">Home</a></li>
+                <li class="active">Registra tu Lumio</li>
+            </ol>
+        </div>
+    </div>
+
+    <section>
+        <div class="container">
+
+            <div class="heading">
+                <h2>Registra tu Lumio</h2>
+                <hr />
+            </div>
+
+            <div class="order-success">
+                <!--<i class="fa fa-cogs"></i>-->
+                <h6>Complete el siguiente formulario</h6>
+                <br />
+                <!--<p>Extensión de garantía del producto</p>-->
+
+                <form #myForm="ngForm" novalidate autocomplete="off">
+
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            <div class="form-group">
+                                <label for="fecha">Fecha cuando realizó su compra <span style="color:red;"> *</span></label>
+                                <input type="text" id="datepicker" class="form-control" required />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="codigo">Nombre empresa proveedora<span style="color:red;"> *</span></label>
+                                <input class="form-control" name="codigo" [(ngModel)]="registro.codigo" maxlength="150"
+                                       placeholder="Nombre empresa proveedora" type="text" #codigo="ngModel" required />
+
+                                <p *ngIf="codigo.errors && (codigo.dirty || codigo.touched)" class="text-danger">
+                                    Nombre empresa proveedora es requerido
+                                </p>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="tipo">Tipo Documento de compra<span style="color:red;"> *</span></label>
+                                <select [(ngModel)]="selectedTipo" class="form-control" 
+                                        name="tipo" #tipo="ngModel" required>
+                                    <option *ngFor="let t of tipos"
+                                            [ngValue]="t">
+                                        {{ t.Nombre }}
+                                    </option>
+                                </select>
+                                <p *ngIf="tipo.errors && (tipo.dirty || tipo.touched)" class="text-danger">
+                                    Tipo Documento es requerido
+                                </p>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="numero">N° documento de compra<span style="color:red;"> *</span></label>
+                                <input class="form-control" name="numero" [(ngModel)]="registro.numero" maxlength="8"
+                                       placeholder="N° documento de compra" type="text" #numero="ngModel" required />
+
+                                <p *ngIf="numero.errors && (numero.dirty || numero.touched)" class="text-danger">
+                                    N° documento de compra es requerido
+                                </p>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="nroserie">N° Serie Linterna<span style="color:red;"> *</span></label>
+                                <input class="form-control" name="nroserie" [(ngModel)]="registro.nroserie" maxlength="150"
+                                       placeholder="N° Serie Linterna" type="text" #nroserie="ngModel" required />
+
+                                <p *ngIf="nroserie.errors && (nroserie.dirty || nroserie.touched)" class="text-danger">
+                                    N° Serie Linterna es requerido
+                                </p>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="nombrepropietario">Nombre propietario<span style="color:red;"> *</span></label>
+                                <input class="form-control" name="nombrepropietario" [(ngModel)]="registro.nombrepropietario" maxlength="150"
+                                       placeholder="Nombre propietario" type="text" #nombrepropietario="ngModel" required />
+
+                                <p *ngIf="nombrepropietario.errors && (nombrepropietario.dirty || nombrepropietario.touched)" class="text-danger">
+                                    Nombre Propietario es requerido
+                                </p>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="rut">Rut<span style="color:red;"> *</span></label>
+                                <input class="form-control" name="rut" [(ngModel)]="registro.rut" maxlength="12"
+                                       placeholder="Ej. 12345678-9" type="text" #rut="ngModel" (focusout)="isValidRUT(registro.rut)" required />
+
+                                <p *ngIf="rut.errors && (rut.dirty || rut.touched)" class="text-danger">
+                                    Rut es requerido
+                                </p>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email<span style="color:red;"> *</span></label>
+                                <input class="form-control" name="email" [(ngModel)]="registro.email" 
+                                       pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" maxlength="150"
+                                       placeholder="Email" type="text" #email="ngModel" required />
+
+                                <p *ngIf="email.errors && (email.dirty || email.touched)" class="text-danger">
+                                    Email es requerido
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-12">&nbsp;</div>
+
+                    <div class="col-md-12">
+                        <div class="col-md-3">&nbsp;</div>
+                        <div class="col-md-6" align="center">
+                            <div class="row">
+                                <button class="btn btn-inverse text-center" style="text-align:center;" type="button"
+                                        [disabled]="!myForm.form.valid"
+                                        (click)="enviar()">
+                                    Aceptar
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-md-3">&nbsp;</div>
+                    </div>
+
+                </form>
+
+                <div class="col-md-12">&nbsp;</div>
+
+            </div>
+        </div>
+    </section>
+</div>

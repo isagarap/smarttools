@@ -1,0 +1,5 @@
+C:\Users\vmiranda\Documents\Sources\SmartToolsFront\App.SmartToolsFront.DTO\bin\Release\App.SmartToolsFront.DTO.dll
+C:\Users\vmiranda\Documents\Sources\SmartToolsFront\App.SmartToolsFront.DTO\bin\Release\App.SmartToolsFront.DTO.pdb
+C:\Users\vmiranda\Documents\Sources\SmartToolsFront\App.SmartToolsFront.DTO\obj\Release\App.SmartToolsFront.DTO.dll
+C:\Users\vmiranda\Documents\Sources\SmartToolsFront\App.SmartToolsFront.DTO\obj\Release\App.SmartToolsFront.DTO.pdb
+C:\Users\vmiranda\Documents\Sources\SmartToolsFront\App.SmartToolsFront.DTO\obj\Release\App.SmartToolsFront.DTO.csprojResolveAssemblyReference.cache

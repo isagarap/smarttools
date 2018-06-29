@@ -1,0 +1,11 @@
+﻿<div id="wrap" class="layout-1">
+    <app-navbar></app-navbar>
+    <router-outlet>
+        <span *ngIf ="showLoader" class="loading"></span>
+    </router-outlet>
+    <!--<div class="container main-container">
+        <router-outlet></router-outlet>
+    </div>-->
+    <app-footer></app-footer>
+</div>
+
